@@ -15,16 +15,16 @@ y = [2, 5, 17, 6, 10, 8, 13, 4, 6, 9, 11, 2, 5, 4, 7]
 def pearsons(xList: list, yList: list):
     Mx = mean(xList)
     My = mean(yList)
+    xResults = list(map(lambda x: x - Mx, xList))
+    yResults = list(map(lambda y: y - My, yList))
 
     def numerator():
-        xResults = list(map(lambda x: x - Mx, xList))
-        yResults = list(map(lambda y: y - My, yList))
         return sum(map(lambda x, y: x * y, xResults, yResults))
 
     def denominator():
         return sqrt(
-            sum(map(lambda x: (x - Mx) ** 2, xList))
-            * sum(map(lambda y: (y - My) ** 2, yList))
+            sum(map(lambda x: x**2, xResults)) 
+            * sum(map(lambda y: y**2, yResults))
         )
 
     return numerator() / denominator()
